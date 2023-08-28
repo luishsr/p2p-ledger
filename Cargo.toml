@@ -1,0 +1,17 @@
+[package]
+name = "p2p-ledger"
+version = "0.1.0"
+edition = "2018"
+
+[workspace]
+
+[[bin]]
+name = "p2p-ledger"
+path = "src/main.rs"
+
+[dependencies]
+tokio = {features = ["full"], version = "1.32.0"}
+serde = {features = ["derive", "serde_derive", "default"], version = "1.0.188"}
+serde_json = "1.0.40"
+sha2 = "0.10.7"
+hex = "0.4.3"

@@ -1,13 +1,11 @@
 [package]
 name = "p2pledger"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
-[workspace]
-
-[[bin]]
+[lib]
 name = "p2pledger"
-path = "src/main.rs"
+path = "src/lib.rs"
 
 [dependencies]
 tokio = {features = ["full"], version = "1.32.0"}

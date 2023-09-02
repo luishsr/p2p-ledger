@@ -1,17 +1,11 @@
 [package]
-name = "p2p-ledger"
-version = "0.1.0"
+name = "p2pledger"
+version = "0.1.1s"
 edition = "2021"
 
-[workspace]
-
-[[bin]]
-name = "p2pledger"
-path = "src/main.rs"
-
 [lib]
-name = "p2pledger"
-path = "src/main.rs"
+name = "p2p_ledger"
+path = "src"
 
 [dependencies]
 tokio = {features = ["full"], version = "1.32.0"}

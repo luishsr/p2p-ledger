@@ -5,7 +5,7 @@ use crate::peer::PeerManager;
 use crate::gossip::sync_with_peer;
 use crate::heartbeat::send_heartbeat;
 
-pub const PEER_ADDRESS: &str = "127.0.0.1:8080";
+pub const PEER_ADDRESS: &str = "127.0.0.1:8085";
 
 pub async fn announce_to_peers(peer_manager: &PeerManager) {
     let peers = peer_manager.get_peers().await;

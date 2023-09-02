@@ -15,20 +15,20 @@ async fn main() {
     let blockchain = Blockchain::new();
 
     // Define own peer address and create a new Peer instance
-    let peer_address = String::from("127.0.0.1:8081");
-    let peer = Peer::new(peer_address.clone(), blockchain);
+    //let peer_address = String::from("127.0.0.1:8081");
+    //let peer = Peer::new(peer_address.clone(), blockchain);
 
     // Start listening for incoming connections
-    tokio::spawn(async move {
-        peer.listen().await;
-    });
+    //tokio::spawn(async move {
+    //    peer.listen().await;
+    //});
 
     // Add a dummy transaction and broadcast it to the network
-    let transaction = Transaction {
-        sender: "Alice".to_string(),
-        recipient: "Bob".to_string(),
-        amount: 50,
-    };
+    //let transaction = Transaction {
+    //    sender: "Alice".to_string(),
+    //    recipient: "Bob".to_string(),
+    //    amount: 50,
+    //};
 
     // Connect to a known peer, e.g., our main network address
     //peer.connect(PEER_ADDRESS).await;
@@ -38,7 +38,7 @@ async fn main() {
     let peer_manager = PeerManager::new();
 
     // Start P2P server
-    //start_server(&peer_manager, blockchain).await;
+    start_server(&peer_manager, blockchain).await;
 
     loop {
         // Announce to peers every loop iteration

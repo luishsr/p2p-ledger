@@ -4,9 +4,9 @@ use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Transaction {
-    pub(crate) sender: String,
-    pub(crate) recipient: String,
-    pub(crate) amount: u32,
+    pub sender: String,
+    pub recipient: String,
+    pub amount: u32,
 }
 
 #[derive(Debug, Serialize, Deserialize)]

@@ -1,12 +1,12 @@
 [package]
-name = "p2p-ledger"
+name = "p2pledger"
 version = "0.1.0"
 edition = "2021"
 
 [workspace]
 
 [[bin]]
-name = "p2p-ledger"
+name = "p2pledger"
 path = "src/main.rs"
 
 [dependencies]

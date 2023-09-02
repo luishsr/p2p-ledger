@@ -15,13 +15,13 @@ async fn main() {
     let blockchain = Blockchain::new();
 
     // Define own peer address and create a new Peer instance
-    let peer_address = String::from("127.0.0.1:8081");
-    let peer = Peer::new(peer_address.clone(), blockchain);
+    //let peer_address = String::from("127.0.0.1:8081");
+    //let peer = Peer::new(peer_address.clone(), blockchain);
 
     // Start listening for incoming connections
-    tokio::spawn(async move {
-        peer.listen().await;
-    });
+    //tokio::spawn(async move {
+    //    peer.listen().await;
+    //});
 
     // Add a dummy transaction and broadcast it to the network
     //let transaction = Transaction {

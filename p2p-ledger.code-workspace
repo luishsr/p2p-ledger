@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../p2p-ledger-peer"
+		}
+	]
+}

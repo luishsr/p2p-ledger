@@ -1,6 +1,6 @@
 [package]
 name = "p2pledger"
-version = "0.1.1s"
+version = "0.1.1"
 edition = "2021"
 
 [lib]

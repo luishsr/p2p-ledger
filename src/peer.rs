@@ -86,10 +86,9 @@ impl Peer {
                 }
             });
 
-            // Sync with peers every loop iteration
-            let mut this_blockchain = self.get_blockchain().await;
-
             //TODO: Implement this sync_with_peer
+            // Sync with peers every loop iteration
+            //let mut this_blockchain = self.get_blockchain().await;
             //sync_with_peer(&peer_manager, &mut this_blockchain ).await;
 
             //TODO: Implement this heartbeat with peers
@@ -107,8 +106,8 @@ impl Peer {
     }
 
     // Getters
-    pub async fn get_blockchain(&self) -> Blockchain {
+    /* pub async fn get_blockchain(&self) -> Blockchain {
         let mut bc = self.blockchain.lock().await;
         bc.into_inner()
-    }
+    } */
 }

@@ -4,8 +4,6 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use std::sync::Arc;
 use tokio::sync::Mutex;
 use crate::models::{Blockchain, Transaction};
-use crate::gossip::sync_with_peer;
-use crate::heartbeat::send_heartbeat;
 
 pub struct Peer {
     pub address: String,
@@ -90,10 +88,13 @@ impl Peer {
 
             // Sync with peers every loop iteration
             let mut this_blockchain = self.get_blockchain().await;
-            sync_with_peer(&peer_manager, &mut this_blockchain ).await;
 
+            //TODO: Implement this sync_with_peer
+            //sync_with_peer(&peer_manager, &mut this_blockchain ).await;
+
+            //TODO: Implement this heartbeat with peers
             // Send heartbeat to peers
-            send_heartbeat(&peer_manager).await;
+            //send_heartbeat(&peer_manager).await;
 
         }
     }

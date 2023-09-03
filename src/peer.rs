@@ -4,6 +4,8 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use std::sync::Arc;
 use tokio::sync::Mutex;
 use crate::models::{Blockchain, Transaction};
+use crate::gossip::sync_with_peer;
+use crate::heartbeat::send_heartbeat;
 
 pub struct Peer {
     pub address: String,
@@ -57,17 +59,22 @@ impl Peer {
     pub async fn listen(&self) {
         let listener = TcpListener::bind(&self.address).await.expect("Unable to bind to address");
         loop {
-            let (mut socket, _) = listener.accept().await.expect("Failed to accept connection");
+            let (mut socket, addr) = listener.accept().await.expect("Failed to accept connection");
             let cloned_blockchain = self.blockchain.clone();
 
+            // Create the peer manager
+            let peer_manager = PeerManager::new();
+
             tokio::spawn(async move {
+                let peer_address = addr.to_string();
                 let mut buffer = [0; 8];
                 socket.read_exact(&mut buffer).await.expect("Failed to read data");
 
                 match &buffer {
                     b"CONNECTX" => {
                         println!("New peer connected!");
-                        // Handle peer connection. E.g., Share own address, update peer list, etc.
+                        // Register the peer since it's requesting blockchain data
+                        peer_manager.register_peer(peer_address).await;
                     },
                     b"TRANSACT" => {
                         let mut data = String::new();
@@ -80,6 +87,14 @@ impl Peer {
                     _ => {}
                 }
             });
+
+            // Sync with peers every loop iteration
+            let mut this_blockchain = self.get_blockchain().await;
+            sync_with_peer(&peer_manager, &mut this_blockchain ).await;
+
+            // Send heartbeat to peers
+            send_heartbeat(&peer_manager).await;
+
         }
     }
 
@@ -91,8 +106,8 @@ impl Peer {
     }
 
     // Getters
-    /* pub async fn get_blockchain(&self) -> Blockchain {
-        self.blockchain.lock().await.clone()
-    } */
+    pub async fn get_blockchain(&self) -> Blockchain {
+        let mut bc = self.blockchain.lock().await;
+        bc.into_inner()
+    }
 }
-
